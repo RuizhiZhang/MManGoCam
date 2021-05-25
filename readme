@@ -1,0 +1,29 @@
+本路徑主要爲將mmdet訓練好的模型做gradcam, gradcam源代碼爲gradcam.pytorch
+mmdetection newest version
+venv: torch 1.7.1, torchvision 0.8.2, mmcv-full 1.2.4, cuda 10.2, ubuntu 16.04
+
+python -m ipykernel install --user --name mmdet
+or
+conda install nb_conda 將所有創建的虛擬環境直接創建爲notebook的kernels
+
+python setup.py develop
+
+python tools/train.py configs/bdc_coco/faster_rcnn_hrnetv2p_w32_1x_coco_data1000_0228.py
+
+python tools/test.py work_dirs/faster_rcnn_hrnetv2p_w32_30e_coco_data1000_0228/faster_rcnn_hrnetv2p_w32_1x_coco_data1000_0228.py work_dirs/faster_rcnn_hrnetv2p_w32_30e_coco_data1000_0228/epoch_30.pth --out data0228_hrnet_res.pkl
+
+logs
+hrnet_w32 -> r101
+
+1x: 12 epochs
+2x: 24 epochs
+
+configs/_base_/default_runtime.py中interval爲100 當顯存小的時候建議使用50
+
+改變epoch數在新的config文件中加total_epochs = 72
+
+configs/hrnet/faster_rcnn_hrnetv2p_w32_1x_coco.py中引用frcnn_resnet50改爲引用resnet101文件
+
+
+
+
